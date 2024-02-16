@@ -61,24 +61,29 @@ const playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
 // Get input from the computer and store it in computerSelection
 
 // generate a random number from 0 (inc) and 99(inc)
-let random = Math.floor(Math.random() * 100);
-let computerSelection;
+
+function getComputerChoice() {
+  const random = Math.floor(Math.random() * 100);
+  let computerChoice;
+  if (random >= 0 && random <= 33) {
+    computerChoice = "Rock";
+  } else if (random >= 34 && random <= 66) {
+    computerChoice = "Paper";
+  } else {
+    computerChoice = "Scissor";
+  }
+  return computerChoice;
+}
+
+const computerSelection = getComputerChoice().toLowerCase();
 // if random [0,33] - Rock
 // else if random [34 - 66] Paper
 // else Scissor
-if (random >= 0 && random <= 33) {
-  computerSelection = "Rock";
-} else if (random >= 34 && random <= 66) {
-  computerSelection = "Paper";
-} else {
-  computerSelection = "Scissor";
-}
 
 console.log(`playerSelection:${playerSelection}`);
 console.log(`computerSelection:${computerSelection}`);
 
 // Compare playerSelection & computerSelection & output the winner, update score
-computerSelection = computerSelection.toLowerCase();
 
 // if they are same, no winner, no loser, round draw, don't update score
 
