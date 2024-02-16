@@ -56,9 +56,84 @@ and declare the scores as well
 // Play one round of rock paper scissors
 
 // Get input from the user and store it in playerSelection
+const playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
 
 // Get input from the computer and store it in computerSelection
+
+// generate a random number from 0 (inc) and 99(inc)
+let random = Math.floor(Math.random() * 100);
+let computerSelection;
+// if random [0,33] - Rock
+// else if random [34 - 66] Paper
+// else Scissor
+if (random >= 0 && random <= 33) {
+  computerSelection = "Rock";
+} else if (random >= 34 && random <= 66) {
+  computerSelection = "Paper";
+} else {
+  computerSelection = "Scissor";
+}
+
+console.log(`playerSelection:${playerSelection}`);
+console.log(`computerSelection:${computerSelection}`);
+
 // Compare playerSelection & computerSelection & output the winner, update score
+computerSelection = computerSelection.toLowerCase();
+
+// if they are same, no winner, no loser, round draw, don't update score
+
+// else if playerSelection is rock, then player wins if cS is scissor only
+// update player score by 1
+// declare player as winner
+// else computer wins (paper)
+
+// else if playerSelection is paper, then player wins if cS is rock only
+// update player score by 1
+// declare player as winner
+// else computer wins (scissor)
+
+// else if playerSelection is scissor, then player wins if cS is paper only
+// update player score by 1
+// declare player as winner
+// else computer wins (rock)
+
+/* 
+players wins
+
+rock scissor
+paper rock
+scissor paper
+
+computer wins
+rock paper
+paper scissor
+scissor rock
+
+*/
+let playerScore = 0;
+let computerScore = 0;
+
+if (playerSelection === computerSelection) {
+  console.log("Match Drawn! No Winner! No Loser");
+} else {
+  if (
+    (playerSelection === "rock" && computerSelection === "scissor") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissor" && computerSelection === "paper")
+  ) {
+    playerScore++;
+    console.log(`Player wins the round!`);
+    console.log(
+      `Player Score: ${playerScore}, Computer Score: ${computerScore}`
+    );
+  } else {
+    computerScore++;
+    console.log(`Computer wins the round!`);
+    console.log(
+      `Player Score: ${playerScore}, Computer Score: ${computerScore}`
+    );
+  }
+}
 
 // Repeat this four more times
 
