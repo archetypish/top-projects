@@ -54,14 +54,20 @@ and declare the scores as well
 // Algorithm - Recipe to solve the problem - divide into subproblems
 
 // Play one round of rock paper scissors
+let playerScore = 0;
+let computerScore = 0;
 
-// Get input from the user and store it in playerSelection
-let playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
+function getSelections() {
+  // Get input from the user and store it in playerSelection
+  const playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
+  // Get input from the computer and store it in computerSelection
+  const computerSelection = getComputerChoice().toLowerCase();
 
-// Get input from the computer and store it in computerSelection
+  // return selections
+  return playerSelection, computerSelection;
+}
 
 // generate a random number from 0 (inc) and 99(inc)
-
 function getComputerChoice() {
   const random = Math.floor(Math.random() * 100);
   let computerChoice;
@@ -75,13 +81,9 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-let computerSelection = getComputerChoice().toLowerCase();
 // if random [0,33] - Rock
 // else if random [34 - 66] Paper
 // else Scissor
-
-console.log(`playerSelection:${playerSelection}`);
-console.log(`computerSelection:${computerSelection}`);
 
 // Compare playerSelection & computerSelection & output the winner, update score
 
@@ -115,8 +117,6 @@ paper scissor
 scissor rock
 
 */
-let playerScore = 0;
-let computerScore = 0;
 
 function playRound(playerSelection, ComputerSelection) {
   if (playerSelection === computerSelection) {
