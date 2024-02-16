@@ -53,20 +53,28 @@ and declare the scores as well
 /* How do we go from desired output to the input */
 // Algorithm - Recipe to solve the problem - divide into subproblems
 
-// Play one round of rock paper scissors
+// Initialize game
+
 let playerScore = 0;
 let computerScore = 0;
+let playerSelection;
+let computerSelection;
 
+// Play one round of rock paper scissors
+
+// function that will be run to get and update selections
 function getSelections() {
   // Get input from the user and store it in playerSelection
-  const playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
-  // Get input from the computer and store it in computerSelection
-  const computerSelection = getComputerChoice().toLowerCase();
+  playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
 
-  // return selections
-  return playerSelection, computerSelection;
+  // Get input from the computer and store it in computerSelection
+  computerSelection = getComputerChoice().toLowerCase();
+
+  //   Log Selections
+  console.log(`Player: ${playerSelection}, Computer: ${computerSelection}`);
 }
 
+// Get input from the computer and store it in computerSelection
 // generate a random number from 0 (inc) and 99(inc)
 function getComputerChoice() {
   const random = Math.floor(Math.random() * 100);
@@ -139,45 +147,48 @@ function playRound(playerSelection, ComputerSelection) {
   }
 }
 
-// Repeat this four more times
-function playGame() {
-  // Round 1
-  // playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
-  // computerSelection = getComputerChoice().toLowerCase();
-  playRound(playerSelection, computerSelection);
+// function to run a complete round
 
-  // Round 2
-  playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
-  computerSelection = getComputerChoice().toLowerCase();
-  playRound(playerSelection, computerSelection);
-
-  // Round 3
-  playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
-  computerSelection = getComputerChoice().toLowerCase();
-  playRound(playerSelection, computerSelection);
-
-  // Round 4
-  playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
-  computerSelection = getComputerChoice().toLowerCase();
-  playRound(playerSelection, computerSelection);
-
-  // Round 5
-  playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
-  computerSelection = getComputerChoice().toLowerCase();
+function completeRound() {
+  getSelections();
   playRound(playerSelection, computerSelection);
 }
 
+// Repeat this four more times
+function playGame() {
+  // Round 1
+  console.log("Round 1");
+  completeRound();
+
+  // Round 2
+  console.log("Round 2");
+  completeRound();
+
+  // Round 3
+  console.log("Round 3");
+  completeRound();
+
+  // Round 4
+  console.log("Round 4");
+  completeRound();
+
+  // Round 5
+  console.log("Round 5");
+  completeRound();
+}
+
 // Declare the scores and winner based on scores
-playGame();
-console.log(`playerScore: ${playerScore}, computerScore: ${computerScore}`);
-let gameResult = declareWinner();
-console.log(gameResult);
 
 // Winner at the end
 function declareWinner() {
   if (playerScore > computerScore) {
-    return "Player is the winner";
+    console.log("Player is the winner");
+  } else if (playerScore < computerScore) {
+    console.log("Computer is the winner");
   } else {
-    return "Match Draw!";
+    console.log("Match Draw!");
   }
 }
+
+playGame();
+console.log(`playerScore: ${playerScore}, computerScore: ${computerScore}`);
