@@ -56,7 +56,7 @@ and declare the scores as well
 // Play one round of rock paper scissors
 
 // Get input from the user and store it in playerSelection
-const playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
+let playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
 
 // Get input from the computer and store it in computerSelection
 
@@ -75,7 +75,7 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-const computerSelection = getComputerChoice().toLowerCase();
+let computerSelection = getComputerChoice().toLowerCase();
 // if random [0,33] - Rock
 // else if random [34 - 66] Paper
 // else Scissor
@@ -120,6 +120,7 @@ let computerScore = 0;
 
 function playRound(playerSelection, ComputerSelection) {
   if (playerSelection === computerSelection) {
+    console.log("Match Drawn! No Winner! No Loser");
     return "Match Drawn! No Winner! No Loser";
   } else {
     if (
@@ -128,17 +129,55 @@ function playRound(playerSelection, ComputerSelection) {
       (playerSelection === "scissor" && computerSelection === "paper")
     ) {
       playerScore++;
-      return `You lose! ${computerSelection} beats ${playerSelection}.`;
+      console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
+      return `You win! ${playerSelection} beats ${computerSelection}.`;
     } else {
       computerScore++;
+      console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
       return `You lose! ${computerSelection} beats ${playerSelection}.`;
     }
   }
 }
 
-let roundResult = playRound(playerSelection, computerSelection);
-console.log(roundResult);
-
 // Repeat this four more times
+function playGame() {
+  // Round 1
+  // playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
+  // computerSelection = getComputerChoice().toLowerCase();
+  playRound(playerSelection, computerSelection);
+
+  // Round 2
+  playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
+  computerSelection = getComputerChoice().toLowerCase();
+  playRound(playerSelection, computerSelection);
+
+  // Round 3
+  playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
+  computerSelection = getComputerChoice().toLowerCase();
+  playRound(playerSelection, computerSelection);
+
+  // Round 4
+  playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
+  computerSelection = getComputerChoice().toLowerCase();
+  playRound(playerSelection, computerSelection);
+
+  // Round 5
+  playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
+  computerSelection = getComputerChoice().toLowerCase();
+  playRound(playerSelection, computerSelection);
+}
 
 // Declare the scores and winner based on scores
+playGame();
+console.log(`playerScore: ${playerScore}, computerScore: ${computerScore}`);
+let gameResult = declareWinner();
+console.log(gameResult);
+
+// Winner at the end
+function declareWinner() {
+  if (playerScore > computerScore) {
+    return "Player is the winner";
+  } else {
+    return "Match Draw!";
+  }
+}
