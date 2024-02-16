@@ -118,27 +118,26 @@ scissor rock
 let playerScore = 0;
 let computerScore = 0;
 
-if (playerSelection === computerSelection) {
-  console.log("Match Drawn! No Winner! No Loser");
-} else {
-  if (
-    (playerSelection === "rock" && computerSelection === "scissor") ||
-    (playerSelection === "paper" && computerSelection === "rock") ||
-    (playerSelection === "scissor" && computerSelection === "paper")
-  ) {
-    playerScore++;
-    console.log(`Player wins the round!`);
-    console.log(
-      `Player Score: ${playerScore}, Computer Score: ${computerScore}`
-    );
+function playRound(playerSelection, ComputerSelection) {
+  if (playerSelection === computerSelection) {
+    return "Match Drawn! No Winner! No Loser";
   } else {
-    computerScore++;
-    console.log(`Computer wins the round!`);
-    console.log(
-      `Player Score: ${playerScore}, Computer Score: ${computerScore}`
-    );
+    if (
+      (playerSelection === "rock" && computerSelection === "scissor") ||
+      (playerSelection === "paper" && computerSelection === "rock") ||
+      (playerSelection === "scissor" && computerSelection === "paper")
+    ) {
+      playerScore++;
+      return `You lose! ${computerSelection} beats ${playerSelection}.`;
+    } else {
+      computerScore++;
+      return `You lose! ${computerSelection} beats ${playerSelection}.`;
+    }
   }
 }
+
+let roundResult = playRound(playerSelection, computerSelection);
+console.log(roundResult);
 
 // Repeat this four more times
 
