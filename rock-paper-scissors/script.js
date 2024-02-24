@@ -129,8 +129,8 @@ scissor rock
 
 function playRound(playerSelection, ComputerSelection) {
   if (playerSelection === computerSelection) {
-    console.log("Match Drawn! No Winner! No Loser");
-    return "Match Drawn! No Winner! No Loser";
+    console.log("Round Drawn! No Winner! No Loser");
+    return "Round Drawn! No Winner! No Loser";
   } else {
     if (
       (playerSelection === "rock" && computerSelection === "scissor") ||
