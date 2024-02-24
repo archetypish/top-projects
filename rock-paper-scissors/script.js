@@ -60,19 +60,20 @@ let computerScore = 0;
 let playerSelection;
 let computerSelection;
 
+const buttons = document.querySelectorAll(".btn");
+
+//
+
 // Play one round of rock paper scissors
 
-// function that will be run to get and update selections
-function getSelections() {
-  // Get input from the user and store it in playerSelection
-  playerSelection = prompt("Rock, Paper or Scissor?", "").toLowerCase();
+// // function that will be run to get and update selections
+// function getSelections() {
+//   // Get input from the computer and store it in computerSelection
+//   computerSelection = getComputerChoice().toLowerCase();
 
-  // Get input from the computer and store it in computerSelection
-  computerSelection = getComputerChoice().toLowerCase();
-
-  //   Log Selections
-  console.log(`Player: ${playerSelection}, Computer: ${computerSelection}`);
-}
+//   //   Log Selections
+//   console.log(`Player: ${playerSelection}, Computer: ${computerSelection}`);
+// }
 
 // Get input from the computer and store it in computerSelection
 // generate a random number from 0 (inc) and 99(inc)
@@ -149,11 +150,6 @@ function playRound(playerSelection, ComputerSelection) {
 
 // function to run a complete round
 
-function completeRound() {
-  getSelections();
-  playRound(playerSelection, computerSelection);
-}
-
 // Repeat this four more times
 function playGame() {
   // // Round 1
@@ -176,15 +172,29 @@ function playGame() {
 // Declare the scores and winner based on scores
 
 // Winner at the end
-function declareWinner() {
-  if (playerScore > computerScore) {
-    console.log("Player is the winner");
-  } else if (playerScore < computerScore) {
-    console.log("Computer is the winner");
-  } else {
-    console.log("Match Draw!");
-  }
-}
+// function declareWinner() {
+//   if (playerScore > computerScore) {
+//     console.log("Player is the winner");
+//   } else if (playerScore < computerScore) {
+//     console.log("Computer is the winner");
+//   } else {
+//     console.log("Match Draw!");
+//   }
+// }
 
-playGame();
-console.log(`playerScore: ${playerScore}, computerScore: ${computerScore}`);
+// playGame();
+// console.log(`playerScore: ${playerScore}, computerScore: ${computerScore}`);
+
+// Play One Round
+buttons.forEach((btn) =>
+  btn.addEventListener("click", (event) => {
+    // Generate Computer Choice
+    computerSelection = getComputerChoice().toLowerCase();
+    console.log(`Computer Selection: ${computerSelection}`);
+    // Get info on user choice based on button clicked
+    playerSelection = event.target.classList[1];
+    console.log(`Player Selection: ${playerSelection}`);
+    // Call PlayRound
+    playRound(playerSelection, computerSelection);
+  })
+);
