@@ -156,25 +156,21 @@ function completeRound() {
 
 // Repeat this four more times
 function playGame() {
-  // Round 1
-  console.log("Round 1");
-  completeRound();
-
-  // Round 2
-  console.log("Round 2");
-  completeRound();
-
-  // Round 3
-  console.log("Round 3");
-  completeRound();
-
-  // Round 4
-  console.log("Round 4");
-  completeRound();
-
-  // Round 5
-  console.log("Round 5");
-  completeRound();
+  // // Round 1
+  // console.log("Round 1");
+  // completeRound();
+  // // Round 2
+  // console.log("Round 2");
+  // completeRound();
+  // // Round 3
+  // console.log("Round 3");
+  // completeRound();
+  // // Round 4
+  // console.log("Round 4");
+  // completeRound();
+  // // Round 5
+  // console.log("Round 5");
+  // completeRound();
 }
 
 // Declare the scores and winner based on scores
