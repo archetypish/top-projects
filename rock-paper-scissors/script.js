@@ -61,19 +61,8 @@ let playerSelection;
 let computerSelection;
 
 const buttons = document.querySelectorAll(".btn");
-
-//
-
+let result = document.querySelector(".result");
 // Play one round of rock paper scissors
-
-// // function that will be run to get and update selections
-// function getSelections() {
-//   // Get input from the computer and store it in computerSelection
-//   computerSelection = getComputerChoice().toLowerCase();
-
-//   //   Log Selections
-//   console.log(`Player: ${playerSelection}, Computer: ${computerSelection}`);
-// }
 
 // Get input from the computer and store it in computerSelection
 // generate a random number from 0 (inc) and 99(inc)
@@ -129,8 +118,7 @@ scissor rock
 
 function playRound(playerSelection, ComputerSelection) {
   if (playerSelection === computerSelection) {
-    console.log("Round Drawn! No Winner! No Loser");
-    return "Round Drawn! No Winner! No Loser";
+    return `Round Drawn! No Winner! No Loser\n\n`;
   } else {
     if (
       (playerSelection === "rock" && computerSelection === "scissor") ||
@@ -138,17 +126,13 @@ function playRound(playerSelection, ComputerSelection) {
       (playerSelection === "scissor" && computerSelection === "paper")
     ) {
       playerScore++;
-      console.log(`You win! ${playerSelection} beats ${computerSelection}.`);
-      return `You win! ${playerSelection} beats ${computerSelection}.`;
+      return `You win! ${playerSelection} beats ${computerSelection}.\n\n`;
     } else {
       computerScore++;
-      console.log(`You lose! ${computerSelection} beats ${playerSelection}.`);
-      return `You lose! ${computerSelection} beats ${playerSelection}.`;
+      return `You lose! ${computerSelection} beats ${playerSelection}.\n\n`;
     }
   }
 }
-
-// function to run a complete round
 
 // Repeat this four more times
 function playGame() {
@@ -190,11 +174,12 @@ buttons.forEach((btn) =>
   btn.addEventListener("click", (event) => {
     // Generate Computer Choice
     computerSelection = getComputerChoice().toLowerCase();
-    console.log(`Computer Selection: ${computerSelection}`);
+    result.innerText += `Computer Selection: ${computerSelection}\n`;
+
     // Get info on user choice based on button clicked
     playerSelection = event.target.classList[1];
-    console.log(`Player Selection: ${playerSelection}`);
+    result.innerText += `Your Selection: ${playerSelection}\n`;
     // Call PlayRound
-    playRound(playerSelection, computerSelection);
+    result.innerText += playRound(playerSelection, computerSelection);
   })
 );
