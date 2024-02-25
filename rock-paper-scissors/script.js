@@ -59,6 +59,7 @@ let playerScore = 0;
 let computerScore = 0;
 let playerSelection;
 let computerSelection;
+let gameEnded = false;
 
 const buttons = document.querySelectorAll(".btn");
 let result = document.querySelector(".result");
@@ -134,25 +135,10 @@ function playRound(playerSelection, ComputerSelection) {
   }
 }
 
-// Declare the scores and winner based on scores
-
-// Winner at the end
-function declareWinner(playerScore, computerScore) {
-  if (playerScore === 5 || computerScore === 5) {
-    if (playerScore > computerScore) {
-      return `You are the winner!`;
-    } else {
-      return "Computer is the Winner";
-    }
-  }
-}
-
-// playGame();
-// console.log(`playerScore: ${playerScore}, computerScore: ${computerScore}`);
-
-// Play One Round
-buttons.forEach((btn) =>
-  btn.addEventListener("click", (event) => {
+function playGame(event) {
+  if (gameEnded) {
+    result.innerText = `\n\nRefresh to restart`;
+  } else {
     // Generate Computer Choice
     computerSelection = getComputerChoice().toLowerCase();
     result.innerText = `Computer Selection: ${computerSelection}\n`;
@@ -166,10 +152,19 @@ buttons.forEach((btn) =>
     // Declare Score
     result.innerText += `Computer Score: ${computerScore}, Your Score: ${playerScore}\n\n\n`;
 
-    // Check winner
-    let winner = declareWinner(playerScore, computerScore);
-    if (winner) {
-      result.innerText += winner;
+    // Check if the game ended
+    if (playerScore === 5 || computerScore === 5) {
+      gameEnded = true;
+      if (playerScore > computerScore) {
+        result.innerText += `You are the winner!`;
+      } else {
+        result.innerText += "Computer is the Winner";
+      }
     }
-  })
-);
+  }
+}
+
+// Play Game until score reaches 5
+buttons.forEach((btn) => {
+  btn.addEventListener("click", playGame);
+});
