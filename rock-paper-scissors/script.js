@@ -155,13 +155,13 @@ buttons.forEach((btn) =>
   btn.addEventListener("click", (event) => {
     // Generate Computer Choice
     computerSelection = getComputerChoice().toLowerCase();
-    result.innerText += `Computer Selection: ${computerSelection}\n`;
+    result.innerText = `Computer Selection: ${computerSelection}\n`;
 
     // Get info on user choice based on button clicked
     playerSelection = event.target.classList[1];
-    result.innerText += `Your Selection: ${playerSelection}\n`;
+    result.innerText = `Your Selection: ${playerSelection}\n`;
     // Call PlayRound
-    result.innerText += playRound(playerSelection, computerSelection);
+    result.innerText = playRound(playerSelection, computerSelection);
 
     // Declare Score
     result.innerText += `Computer Score: ${computerScore}, Your Score: ${playerScore}\n\n\n`;
